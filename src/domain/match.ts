@@ -29,7 +29,10 @@ export class Match {
       this.resetForNextGame();
     }
 
-    if (this.currentSet.shouldStartTiebreak()) {
+    if (
+      this.currentSet.shouldStartTiebreak() &&
+      !(this.currentGame instanceof TiebreakGame)
+    ) {
       this.currentGame = new TiebreakGame();
     }
 
