@@ -1,10 +1,10 @@
-import { IWinnable } from "./i-winnable";
+import { IPointAllocatable } from "./interfaces/i-player-point-allocatable";
 import { PlayerType } from "./types";
 
 const TIEBREAK_WINNING_SCORE = 7;
 const TIEBREAK_WINNING_DIFFERENCE = 2;
 
-export class Tiebreak implements IWinnable {
+export class Tiebreak implements IPointAllocatable {
   private player1Score: number;
   private player2Score: number;
 

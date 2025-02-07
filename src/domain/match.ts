@@ -3,7 +3,7 @@ import { Game } from "./game";
 import { Set } from "./set";
 import { Tiebreak } from "./tiebreak";
 import { PlayerType } from "./types";
-import { IWinnable } from "./i-winnable";
+import { IPointAllocatable } from "./interfaces/i-player-point-allocatable";
 
 enum PointAllocation {
   Game,
@@ -46,7 +46,7 @@ export class Match {
   }
 
   private allocatePoint(playerType: PlayerType) {
-    const currentGame: IWinnable =
+    const currentGame: IPointAllocatable =
       this.pointAllocationState === PointAllocation.Game
         ? this.currentGame
         : this.currentTiebreak;

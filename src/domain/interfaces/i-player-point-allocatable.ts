@@ -1,6 +1,6 @@
-import { PlayerType } from "./types";
+import { PlayerType } from "../types";
 
-export interface IWinnable {
+export interface IPointAllocatable {
   pointWonBy(playerType: PlayerType): void;
   isWonBy(playerType: PlayerType): boolean;
 }
