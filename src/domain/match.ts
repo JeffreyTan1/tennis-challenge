@@ -3,6 +3,7 @@ import { Game } from "./game";
 import { Set } from "./set";
 import { Tiebreak } from "./tiebreak";
 import { PlayerType } from "./types";
+import { IWinnable } from "./i-winnable";
 
 enum PointAllocation {
   Game,
@@ -31,25 +32,52 @@ export class Match {
   }
 
   pointWonBy(playerName: string) {
-    const playerType =
-      this.player1.getName() === playerName
-        ? PlayerType.Player1
-        : this.player2.getName() === playerName
-        ? PlayerType.Player2
-        : null;
-
-    if (playerType === null) {
-      throw new Error("Player not found");
-    }
-
-    if (this.pointAllocationState === PointAllocation.Game) {
-      this.currentGame.pointWonBy(playerType);
-    } else {
-      this.currentTiebreak.pointWonBy(playerType);
-    }
+    const playerType = this.getPlayerType(playerName);
+    this.allocatePoint(playerType);
   }
 
   score() {
-    // TODO: Combine set and (game/tiebreak) scores
+    const setScore = this.currentSet.getScore();
+    const gameOrTiebreakScore =
+      this.pointAllocationState === PointAllocation.Game
+        ? this.currentGame.getScore()
+        : this.currentTiebreak.getScore();
+    return this.combineScoreStrings(setScore, gameOrTiebreakScore);
+  }
+
+  private allocatePoint(playerType: PlayerType) {
+    const currentGame: IWinnable =
+      this.pointAllocationState === PointAllocation.Game
+        ? this.currentGame
+        : this.currentTiebreak;
+
+    currentGame.pointWonBy(playerType);
+
+    if (currentGame.isWonBy(playerType)) {
+      this.currentSet.gameWonBy(playerType);
+      this.resetForNewGame();
+    }
+  }
+
+  private getPlayerType(playerName: string): PlayerType {
+    if (this.player1.getName() === playerName) {
+      return PlayerType.Player1;
+    }
+    if (this.player2.getName() === playerName) {
+      return PlayerType.Player2;
+    }
+    throw new Error("Player not found");
+  }
+
+  private resetForNewGame() {
+    this.currentGame.reset();
+    this.currentTiebreak.reset();
+  }
+
+  private combineScoreStrings(
+    setScore: string,
+    gameOrTiebreakScore: string
+  ): string {
+    return `${setScore}, ${gameOrTiebreakScore}`;
   }
 }

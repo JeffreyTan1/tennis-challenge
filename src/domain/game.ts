@@ -1,3 +1,4 @@
+import { IWinnable } from "./i-winnable";
 import { Player } from "./player";
 import { PlayerType } from "./types";
 
@@ -12,7 +13,7 @@ const SCORE_MAP: { [key: number]: string } = {
   3: "40",
 };
 
-export class Game {
+export class Game implements IWinnable {
   private player1: Player;
   private player2: Player;
   private player1Score: number;

@@ -1,9 +1,10 @@
+import { IWinnable } from "./i-winnable";
 import { PlayerType } from "./types";
 
 const TIEBREAK_WINNING_SCORE = 7;
 const TIEBREAK_WINNING_DIFFERENCE = 2;
 
-export class Tiebreak {
+export class Tiebreak implements IWinnable {
   private player1Score: number;
   private player2Score: number;
 
