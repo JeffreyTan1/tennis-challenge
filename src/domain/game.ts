@@ -61,6 +61,11 @@ export class Game {
     }
   }
 
+  reset() {
+    this.player1Score = 0;
+    this.player2Score = 0;
+  }
+
   private isDeuce(): boolean {
     return (
       this.player1Score >= MIN_POINTS_TO_DEUCE &&

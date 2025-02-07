@@ -37,4 +37,9 @@ export class Tiebreak {
   getScore(): string {
     return `${this.player1Score} - ${this.player2Score}`;
   }
+
+  reset() {
+    this.player1Score = 0;
+    this.player2Score = 0;
+  }
 }
