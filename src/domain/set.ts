@@ -20,6 +20,10 @@ export class Set {
     }
   }
 
+  getScore(): string {
+    return `${this.player1Score} - ${this.player2Score}`;
+  }
+
   isWonBy(player: PlayerType): boolean {
     if (player === PlayerType.Player1) {
       return (
