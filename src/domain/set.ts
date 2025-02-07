@@ -1,40 +1,23 @@
 import { PlayerType } from "./types";
 
-const SET_WINNING_SCORE = 6;
-const SET_WINNING_DIFFERENCE = 2;
-
 export class Set {
-  private player1Score: number;
-  private player2Score: number;
+  private player1GamesWon: number;
+  private player2GamesWon: number;
 
   constructor() {
-    this.player1Score = 0;
-    this.player2Score = 0;
+    this.player1GamesWon = 0;
+    this.player2GamesWon = 0;
   }
 
-  pointWonBy(player: PlayerType) {
+  gameWonBy(player: PlayerType) {
     if (player === PlayerType.Player1) {
-      this.player1Score++;
+      this.player1GamesWon++;
     } else {
-      this.player2Score++;
+      this.player2GamesWon++;
     }
   }
 
   getScore(): string {
-    return `${this.player1Score} - ${this.player2Score}`;
-  }
-
-  isWonBy(player: PlayerType): boolean {
-    if (player === PlayerType.Player1) {
-      return (
-        this.player1Score >= SET_WINNING_SCORE &&
-        this.player1Score - this.player2Score >= SET_WINNING_DIFFERENCE
-      );
-    } else {
-      return (
-        this.player2Score >= SET_WINNING_SCORE &&
-        this.player2Score - this.player1Score >= SET_WINNING_DIFFERENCE
-      );
-    }
+    return `${this.player1GamesWon} - ${this.player2GamesWon}`;
   }
 }
