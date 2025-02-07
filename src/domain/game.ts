@@ -1,3 +1,4 @@
+import { Player } from "./player";
 import { PlayerType } from "./types";
 
 const GAME_WINNING_SCORE = 4;
@@ -11,10 +12,14 @@ const SCORE_MAP: { [key: number]: string } = {
 };
 
 export class Game {
+  private player1: Player;
+  private player2: Player;
   private player1Score: number;
   private player2Score: number;
 
-  constructor() {
+  constructor(player1: Player, player2: Player) {
+    this.player1 = player1;
+    this.player2 = player2;
     this.player1Score = 0;
     this.player2Score = 0;
   }
@@ -41,11 +46,15 @@ export class Game {
     }
   }
 
-  score(): string | undefined {
+  getScore(): string {
     if (this.isDeuce()) {
       return "Deuce";
     } else if (this.isAdvantage()) {
-      return "Advantage";
+      const advantagePlayer =
+        this.player1Score > this.player2Score
+          ? this.player1.getName()
+          : this.player2.getName();
+      return `Advantage ${advantagePlayer}`;
     } else {
       return `${SCORE_MAP[this.player1Score]}-${SCORE_MAP[this.player2Score]}`;
     }

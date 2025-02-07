@@ -25,7 +25,7 @@ export class Match {
 
     this.currentSet = new Set();
     this.currentTiebreak = new Tiebreak();
-    this.currentGame = new Game();
+    this.currentGame = new Game(this.player1, this.player2);
 
     this.pointAllocationState = PointAllocation.Game;
   }
