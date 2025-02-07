@@ -3,6 +3,7 @@ import { PlayerType } from "./types";
 
 const GAME_WINNING_SCORE = 4;
 const GAME_WINNING_DIFFERENCE = 2;
+const MIN_POINTS_TO_DEUCE = 3;
 
 const SCORE_MAP: { [key: number]: string } = {
   0: "0",
@@ -62,16 +63,16 @@ export class Game {
 
   private isDeuce(): boolean {
     return (
-      this.player1Score >= 3 &&
-      this.player2Score >= 3 &&
+      this.player1Score >= MIN_POINTS_TO_DEUCE &&
+      this.player2Score >= MIN_POINTS_TO_DEUCE &&
       this.player1Score === this.player2Score
     );
   }
 
   private isAdvantage(): boolean {
     return (
-      this.player1Score >= 3 &&
-      this.player2Score >= 3 &&
+      this.player1Score >= MIN_POINTS_TO_DEUCE &&
+      this.player2Score >= MIN_POINTS_TO_DEUCE &&
       this.player1Score !== this.player2Score
     );
   }

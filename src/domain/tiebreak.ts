@@ -20,10 +20,6 @@ export class Tiebreak {
     }
   }
 
-  getScore(): string {
-    return `${this.player1Score} - ${this.player2Score}`;
-  }
-
   isWonBy(player: PlayerType): boolean {
     if (player === PlayerType.Player1) {
       return (
@@ -36,5 +32,9 @@ export class Tiebreak {
         this.player2Score - this.player1Score >= TIEBREAK_WINNING_DIFFERENCE
       );
     }
+  }
+
+  getScore(): string {
+    return `${this.player1Score} - ${this.player2Score}`;
   }
 }
