@@ -2,7 +2,7 @@ import { IScoringStrategy } from "./interfaces/i-scoring-strategy";
 import { Player } from "./player";
 import { PlayerType } from "./types";
 
-const GAME_WINNING_SCORE = 4;
+export const GAME_WINNING_SCORE = 4;
 const GAME_WINNING_DIFFERENCE = 2;
 const MIN_POINTS_TO_DEUCE = 3;
 

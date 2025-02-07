@@ -36,6 +36,6 @@ export class TiebreakGame implements IScoringStrategy {
   }
 
   getScore(): string {
-    return `${this.player1Score} - ${this.player2Score}`;
+    return `${this.player1Score}-${this.player2Score}`;
   }
 }
