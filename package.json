@@ -7,7 +7,7 @@
     "start": "ts-node src/main.ts",
     "test": "jest"
   },
-  "author": "",
+  "author": "Jeffrey Tan",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.14",
