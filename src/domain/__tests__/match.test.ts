@@ -6,6 +6,14 @@ import { SET_WINNING_SCORE } from "../set";
 const PLAYER_1 = "Player 1";
 const PLAYER_2 = "Player 2";
 
+const winGames = (match: Match, playerName: string, games: number) => {
+  for (let i = 0; i < games; i++) {
+    for (let j = 0; j < GAME_WINNING_SCORE; j++) {
+      match.pointWonBy(playerName);
+    }
+  }
+};
+
 describe("Match", () => {
   let match: Match;
   beforeEach(() => {
@@ -46,24 +54,22 @@ describe("Match", () => {
   });
 
   it("should show tiebreak correctly", () => {
-    for (let i = 0; i < SET_WINNING_SCORE; i++) {
-      for (let j = 0; j < GAME_WINNING_SCORE; j++) {
-        match.pointWonBy(PLAYER_1);
-        match.pointWonBy(PLAYER_2);
-      }
-    }
+    // Player 1 wins 4 points for 5 games
+    winGames(match, PLAYER_1, 5);
+    // Player 2 wins 4 points for 6 games
+    winGames(match, PLAYER_2, 6);
+
+    // Player 1 wins 1 more game to make it a tiebreak
+    winGames(match, PLAYER_1, 1);
+
+    expect(match.score()).toBe("6-6");
 
     match.pointWonBy(PLAYER_1);
-    expect(match.score()).toBe("1-1, 1-0");
+    expect(match.score()).toBe("6-6, 1-0");
   });
 
   it("should reset the games after a set is won", () => {
-    for (let i = 0; i < SET_WINNING_SCORE; i++) {
-      for (let j = 0; j < GAME_WINNING_SCORE; j++) {
-        match.pointWonBy(PLAYER_1);
-        match.pointWonBy(PLAYER_2);
-      }
-    }
+    winGames(match, PLAYER_1, 6);
     expect(match.score()).toBe("0-0");
   });
 });
