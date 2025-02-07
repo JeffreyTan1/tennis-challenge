@@ -13,7 +13,7 @@ describe("Match", () => {
   });
 
   it("should score starting state correctly", () => {
-    expect(match.score()).toBe("0-0, 0-0");
+    expect(match.score()).toBe("0-0");
   });
 
   it("should score after player wins a point", () => {
@@ -25,7 +25,7 @@ describe("Match", () => {
     for (let i = 0; i < GAME_WINNING_SCORE; i++) {
       match.pointWonBy(PLAYER_1);
     }
-    expect(match.score()).toBe("1-0, 0-0");
+    expect(match.score()).toBe("1-0");
   });
 
   it("should show deuce correctly", () => {
@@ -64,6 +64,6 @@ describe("Match", () => {
         match.pointWonBy(PLAYER_2);
       }
     }
-    expect(match.score()).toBe("0-0, 0-0");
+    expect(match.score()).toBe("0-0");
   });
 });

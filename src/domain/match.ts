@@ -57,9 +57,13 @@ export class Match {
 
   private combineScoreStrings(
     setScore: string,
-    gameOrTiebreakScore: string
+    gameScore: string | undefined
   ): string {
-    return `${setScore}, ${gameOrTiebreakScore}`;
+    if (!gameScore) {
+      return setScore;
+    }
+
+    return `${setScore}, ${gameScore}`;
   }
 
   private resetForNextGame() {

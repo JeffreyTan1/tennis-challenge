@@ -35,7 +35,15 @@ export class TiebreakGame implements IScoringStrategy {
     }
   }
 
-  getScore(): string {
+  getScore(): string | undefined {
+    if (this.noScores()) {
+      return undefined;
+    }
+
     return `${this.player1Score}-${this.player2Score}`;
+  }
+
+  private noScores(): boolean {
+    return this.player1Score === 0 && this.player2Score === 0;
   }
 }

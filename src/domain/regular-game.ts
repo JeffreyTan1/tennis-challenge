@@ -48,7 +48,11 @@ export class RegularGame implements IScoringStrategy {
     }
   }
 
-  getScore(): string {
+  getScore(): string | undefined {
+    if (this.noScores()) {
+      return undefined;
+    }
+
     if (this.isDeuce()) {
       return "Deuce";
     } else if (this.isAdvantage()) {
@@ -60,6 +64,10 @@ export class RegularGame implements IScoringStrategy {
     } else {
       return `${SCORE_MAP[this.player1Score]}-${SCORE_MAP[this.player2Score]}`;
     }
+  }
+
+  private noScores(): boolean {
+    return this.player1Score === 0 && this.player2Score === 0;
   }
 
   private isDeuce(): boolean {
