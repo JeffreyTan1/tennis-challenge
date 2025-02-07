@@ -1,10 +1,10 @@
-import { IPointAllocatable } from "./interfaces/i-player-point-allocatable";
+import { IScoringStrategy } from "./interfaces/i-scoring-strategy";
 import { PlayerType } from "./types";
 
 const TIEBREAK_WINNING_SCORE = 7;
 const TIEBREAK_WINNING_DIFFERENCE = 2;
 
-export class Tiebreak implements IPointAllocatable {
+export class TiebreakGame implements IScoringStrategy {
   private player1Score: number;
   private player2Score: number;
 
@@ -37,10 +37,5 @@ export class Tiebreak implements IPointAllocatable {
 
   getScore(): string {
     return `${this.player1Score} - ${this.player2Score}`;
-  }
-
-  reset() {
-    this.player1Score = 0;
-    this.player2Score = 0;
   }
 }

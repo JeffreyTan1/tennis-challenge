@@ -1,4 +1,4 @@
-import { IPointAllocatable } from "./interfaces/i-player-point-allocatable";
+import { IScoringStrategy } from "./interfaces/i-scoring-strategy";
 import { Player } from "./player";
 import { PlayerType } from "./types";
 
@@ -13,7 +13,7 @@ const SCORE_MAP: { [key: number]: string } = {
   3: "40",
 };
 
-export class Game implements IPointAllocatable {
+export class RegularGame implements IScoringStrategy {
   private player1: Player;
   private player2: Player;
   private player1Score: number;
@@ -60,11 +60,6 @@ export class Game implements IPointAllocatable {
     } else {
       return `${SCORE_MAP[this.player1Score]}-${SCORE_MAP[this.player2Score]}`;
     }
-  }
-
-  reset() {
-    this.player1Score = 0;
-    this.player2Score = 0;
   }
 
   private isDeuce(): boolean {

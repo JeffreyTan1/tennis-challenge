@@ -17,7 +17,15 @@ export class Set {
     }
   }
 
+  isCompleted(): boolean {
+    return this.player1GamesWon === 6 || this.player2GamesWon === 6;
+  }
+
   getScore(): string {
     return `${this.player1GamesWon} - ${this.player2GamesWon}`;
+  }
+
+  shouldStartTiebreak(): boolean {
+    return this.player1GamesWon === 6 && this.player2GamesWon === 6;
   }
 }
