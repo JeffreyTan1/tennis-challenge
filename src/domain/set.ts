@@ -1,5 +1,8 @@
 import { PlayerType } from "./types";
 
+const SET_WINNING_SCORE = 6;
+const SET_WINNING_DIFFERENCE = 2;
+
 export class Set {
   private player1GamesWon: number;
   private player2GamesWon: number;
@@ -17,8 +20,14 @@ export class Set {
     }
   }
 
-  isCompleted(): boolean {
-    return this.player1GamesWon === 6 || this.player2GamesWon === 6;
+  isWon(): boolean {
+    return (
+      (this.player1GamesWon >= SET_WINNING_SCORE &&
+        this.player1GamesWon - this.player2GamesWon >=
+          SET_WINNING_DIFFERENCE) ||
+      (this.player2GamesWon >= SET_WINNING_SCORE &&
+        this.player2GamesWon - this.player1GamesWon >= SET_WINNING_DIFFERENCE)
+    );
   }
 
   getScore(): string {

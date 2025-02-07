@@ -33,7 +33,7 @@ export class Match {
       this.currentGame = new TiebreakGame();
     }
 
-    if (this.currentSet.isCompleted()) {
+    if (this.currentSet.isWon()) {
       // START AGAIN
       this.currentSet = new Set();
     }
