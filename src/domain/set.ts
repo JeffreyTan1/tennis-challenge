@@ -1,7 +1,7 @@
 import { PlayerType } from "./types";
 
-const SET_WINNING_SCORE = 6;
-const SET_WINNING_DIFFERENCE = 2;
+export const SET_WINNING_SCORE = 6;
+export const SET_WINNING_DIFFERENCE = 2;
 
 export class Set {
   private player1GamesWon: number;
@@ -31,7 +31,7 @@ export class Set {
   }
 
   getScore(): string {
-    return `${this.player1GamesWon} - ${this.player2GamesWon}`;
+    return `${this.player1GamesWon}-${this.player2GamesWon}`;
   }
 
   shouldStartTiebreak(): boolean {
